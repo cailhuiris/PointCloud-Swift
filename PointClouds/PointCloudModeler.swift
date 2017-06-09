@@ -6,7 +6,8 @@ class PointCloudModeler {
     
     // var keyword in function parameter makes it to be mutable.
     // resampling given points
-    func resample(var points:[Point]) -> [Point] {
+    func resample(_ points:[Point]) -> [Point] {
+        var points = points
         let intervalLength = pathLength(points) / Double(numPoints - 1)
         var distance = 0.0
         var newPoints = [Point]()
@@ -25,7 +26,7 @@ class PointCloudModeler {
                     
                     newPoints.append(q)
                     // 'q point' will be next p2
-                    points.insert(q, atIndex:i)
+                    points.insert(q, at:i)
                     distance = 0.0
                 } else {
                     distance += d
@@ -42,7 +43,7 @@ class PointCloudModeler {
         return newPoints
     }
     
-    func scale(points:[Point]) -> [Point] {
+    func scale(_ points:[Point]) -> [Point] {
         var minX = Double.infinity
         var maxX = Double.infinity * -1.0
         var minY = Double.infinity
@@ -68,7 +69,7 @@ class PointCloudModeler {
     }
     
     // move this points to specific point that is passed as second parameter.
-    func translateTo(points:[Point], pt:Point) -> [Point] {
+    func translateTo(_ points:[Point], pt:Point) -> [Point] {
         let c = centroid(points)
         var newPoints = [Point]()
         
@@ -82,7 +83,7 @@ class PointCloudModeler {
     }
     
     // get the center point from points.
-    func centroid(points:[Point]) -> Point {
+    func centroid(_ points:[Point]) -> Point {
         var _x = 0.0
         var _y = 0.0
         
@@ -97,7 +98,7 @@ class PointCloudModeler {
         return Point(x:_x, y:_y, id:0)
     }
     
-    func pathLength(points:[Point]) -> Double {
+    func pathLength(_ points:[Point]) -> Double {
         var d = 0.0
         
         // 경고
@@ -113,7 +114,7 @@ class PointCloudModeler {
         return d
     }
     
-    func avgPointDistance(points1:[Point], points2:[Point]) -> Double? {
+    func avgPointDistance(_ points1:[Point], points2:[Point]) -> Double? {
         if(points1.count != points2.count) {
             return nil
         } else {
@@ -128,7 +129,7 @@ class PointCloudModeler {
     }
  
     // get distance between two points.
-    func getDistance(p1:Point, p2:Point) -> Double {
+    func getDistance(_ p1:Point, p2:Point) -> Double {
         let dx = p2.x - p1.x
         let dy = p2.y - p1.y
         return sqrt(dx * dx + dy * dy)

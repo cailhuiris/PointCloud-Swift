@@ -137,6 +137,7 @@
 					D79FF09B1C679C760088B9FD = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = HV4VTT4EX9;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -300,6 +301,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tmsae.PointClouds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -311,6 +313,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tmsae.PointClouds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

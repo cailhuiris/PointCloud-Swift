@@ -21,7 +21,7 @@ class PointDrawingCanvas : UIView {
         // or bit operator in
         // swift 1.2 : .FlexibleWidth | .FlexibleHeight -- Object Name is inferred
         // swift 2 : [.FlexibleWidth, .FlexibleHeight]
-        tempImageView!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        tempImageView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tempImageView!.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1)
         self.addSubview(tempImageView!)
     }
@@ -30,18 +30,18 @@ class PointDrawingCanvas : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            lastPoint = touch.locationInView(self)
+            lastPoint = touch.location(in: self)
             let point = Point(x: Double(lastPoint.x), y: Double(lastPoint.y), id: self.id)
             points.append(point)
         }
     }
     
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            let point = touch.locationInView(self)
+            let point = touch.location(in: self)
             let pointForCloud = Point(x: Double(point.x), y: Double(point.y), id: self.id)
             points.append(pointForCloud)
             
@@ -50,7 +50,7 @@ class PointDrawingCanvas : UIView {
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.id += 1
     }
     
@@ -59,20 +59,20 @@ class PointDrawingCanvas : UIView {
     }
     
     // Quartz 2D
-    func drawLine(from:CGPoint, to:CGPoint) {
+    func drawLine(_ from:CGPoint, to:CGPoint) {
         // Creates a bitmap-based graphics context and makes it the current context.
         UIGraphicsBeginImageContext(self.frame.size)
         let context = UIGraphicsGetCurrentContext()
-        tempImageView!.image?.drawInRect(CGRect(x:0, y:0, width:self.frame.size.width, height:self.frame.size.height))
+        tempImageView!.image?.draw(in: CGRect(x:0, y:0, width:self.frame.size.width, height:self.frame.size.height))
         
-        CGContextMoveToPoint(context, from.x, from.y)
-        CGContextAddLineToPoint(context, to.x, to.y)
-        CGContextSetLineCap(context, .Round)
-        CGContextSetLineWidth(context, CGFloat(3.0))
-        CGContextSetRGBStrokeColor(context, 0.3, 0.3, 0.3, 1.0)
-        CGContextSetBlendMode(context, .Normal)
+        context?.move(to: CGPoint(x: from.x, y: from.y))
+        context?.addLine(to: CGPoint(x: to.x, y: to.y))
+        context?.setLineCap(.round)
+        context?.setLineWidth(CGFloat(3.0))
+        context?.setStrokeColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+        context?.setBlendMode(.normal)
         
-        CGContextStrokePath(context)
+        context?.strokePath()
         
         tempImageView!.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

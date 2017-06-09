@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         drawingCanvas = PointDrawingCanvas(frame: drawingArea!.bounds)
-        drawingCanvas!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        drawingCanvas!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         drawingArea!.addSubview(drawingCanvas!)
     }
 
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     }
 
     // Match pattern, then represent what it is in view controller.
-    @IBAction func matchButtonPressed(sender:AnyObject?) {
+    @IBAction func matchButtonPressed(_ sender:AnyObject?) {
         if let canvas = drawingCanvas {
             if !canvas.isEmpty() {
                 let pointCloud = PointCloud("input gesture", canvas.points)
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     }
     
     // clear canvas
-    @IBAction func clearButtonPressed(sender:AnyObject?) {
+    @IBAction func clearButtonPressed(_ sender:AnyObject?) {
         if let canvas = drawingCanvas {
             canvas.clearCanvas()
         }

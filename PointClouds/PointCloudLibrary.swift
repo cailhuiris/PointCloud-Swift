@@ -5,11 +5,11 @@ class PointCloudLibrary {
     var pointClouds = [PointCloud]()
     
     // return top related gesture from library
-    func recognizeFromLibrary(inputGesture:PointCloud) -> MatchResult {
+    func recognizeFromLibrary(_ inputGesture:PointCloud) -> MatchResult {
         var b = Double.infinity
         var u = -1
         
-        for (index, pointCloud) in pointClouds.enumerate() {
+        for (index, pointCloud) in pointClouds.enumerated() {
             if let d = inputGesture.greedyMatch(pointCloud) {
                 if(d < b) {
                     b = d
