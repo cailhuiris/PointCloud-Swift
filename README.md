@@ -1,7 +1,7 @@
 # What this proejct is.
 This application can recognize gestures like scroll, swipe and shape which user draw.
 
-# PointCloud implemented by Swift.
+# Algorithm.
 This project is implementation of $P-Recognizer Algorithm, 
 it is developed in iOS platform using Swift.
 
